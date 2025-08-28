@@ -1,62 +1,112 @@
-import { DemoResponse } from "@shared/api";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Index() {
-  const [exampleFromServer, setExampleFromServer] = useState("");
-  // Fetch users on component mount
-  useEffect(() => {
-    fetchDemo();
-  }, []);
-
-  // Example of how to fetch data from the server (if needed)
-  const fetchDemo = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setExampleFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching hello:", error);
-    }
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-      <div className="text-center">
-        {/* TODO: FUSION_GENERATION_APP_PLACEHOLDER replace everything here with the actual app! */}
-        <h1 className="text-2xl font-semibold text-slate-800 flex items-center justify-center gap-3">
-          <svg
-            className="animate-spin h-8 w-8 text-slate-400"
-            viewBox="0 0 50 50"
-          >
-            <circle
-              className="opacity-30"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-            />
-            <circle
-              className="text-slate-600"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-              strokeDasharray="100"
-              strokeDashoffset="75"
-            />
-          </svg>
-          Generating your app...
-        </h1>
-        <p className="mt-4 text-slate-600 max-w-md">
-          Watch the chat on the left for updates that might need your attention
-          to finish generating
-        </p>
-        <p className="mt-4 hidden max-w-md">{exampleFromServer}</p>
-      </div>
-    </div>
+    <>
+      <section className="relative overflow-hidden pt-20 sm:pt-28 pb-16 sm:pb-24">
+        <div className="container grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70"
+            >
+              Futuristic medical + AI + ophthalmology
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.05 }}
+              className="mt-4 font-heading text-4xl sm:text-6xl font-semibold tracking-tight"
+            >
+              Dristi – Your Ultimate Ophthalmologist
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="mt-4 text-lg text-white/80 max-w-xl"
+            >
+              AI-powered eye disease detection & vision tests.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="mt-8 flex flex-wrap items-center gap-3"
+            >
+              <Link to="/fundus" className="btn-neon">Analyze Fundus Image</Link>
+              <Link to="/color-test" className="btn-outline-neon">Take Color Blindness Test</Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.25 }}
+              className="mt-10 grid grid-cols-3 gap-4 text-center"
+            >
+              <div className="glass rounded-xl p-4">
+                <div className="text-2xl font-semibold">99.2%</div>
+                <div className="text-xs text-white/60">avg. sensitivity</div>
+              </div>
+              <div className="glass rounded-xl p-4">
+                <div className="text-2xl font-semibold"><span className="text-emerald-400">HIPAA</span></div>
+                <div className="text-xs text-white/60">compliant</div>
+              </div>
+              <div className="glass rounded-xl p-4">
+                <div className="text-2xl font-semibold">24/7</div>
+                <div className="text-xs text-white/60">availability</div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="relative">
+            {/* Floating eye scanner illustration */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="relative mx-auto aspect-square w-full max-w-[520px]"
+            >
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/25 to-emerald-400/20 blur-2xl" />
+              <div className="absolute inset-0 grid place-items-center">
+                <div className="relative">
+                  <motion.div className="h-72 w-72 sm:h-96 sm:w-96 rounded-full border border-white/10 backdrop-blur-xl bg-white/5 shadow-2xl shadow-cyan-500/20" animate={{ boxShadow: [
+                    "0 0 0 0 rgba(59,130,246,0.15)",
+                    "0 0 80px 0 rgba(59,130,246,0.35)"
+                  ] }} transition={{ duration: 3, repeat: Infinity, repeatType: "mirror" }} />
+                  <motion.div className="absolute inset-8 rounded-full border-2 border-cyan-400/60" animate={{ rotate: 360 }} transition={{ duration: 14, repeat: Infinity, ease: "linear" }} />
+                  <div className="absolute inset-0 grid place-items-center">
+                    <motion.div className="h-20 w-20 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400" animate={{ scale: [1, 1.08, 1] }} transition={{ duration: 2.4, repeat: Infinity }} />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-10">
+        <div className="container">
+          <div className="grid sm:grid-cols-3 gap-4">
+            <div className="holo rounded-xl p-4">
+              <div className="text-sm text-white/70">Secure • Private</div>
+              <div className="text-xs text-white/60">End-to-end encrypted uploads</div>
+            </div>
+            <div className="holo rounded-xl p-4">
+              <div className="text-sm text-white/70">Clinically aligned</div>
+              <div className="text-xs text-white/60">Built with ophthalmologists</div>
+            </div>
+            <div className="holo rounded-xl p-4">
+              <div className="text-sm text-white/70">Fast results</div>
+              <div className="text-xs text-white/60">Under 10 seconds average</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
