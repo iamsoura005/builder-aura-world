@@ -179,6 +179,16 @@
     transform: translateX(-100%);
     animation: shine 3s linear infinite;
   }
+
+  /* 3D Eye eyelids */
+  .eyelid-top, .eyelid-bottom {
+    @apply absolute left-0 right-0 bg-background/95 backdrop-blur-sm rounded-[999px];
+  }
+  .eyelid-top { top: -2%; height: 52%; transform: translateY(-100%); animation: blinkTop 5s cubic-bezier(0.4,0,0.2,1) infinite; }
+  .eyelid-bottom { bottom: -2%; height: 52%; transform: translateY(100%); animation: blinkBottom 5s cubic-bezier(0.4,0,0.2,1) infinite; animation-delay: 20ms; }
+
+  @keyframes blinkTop { 0%, 92%, 100% { transform: translateY(-100%); } 95% { transform: translateY(0%); } }
+  @keyframes blinkBottom { 0%, 92%, 100% { transform: translateY(100%); } 95% { transform: translateY(0%); } }
 }
 
 @keyframes shine {
