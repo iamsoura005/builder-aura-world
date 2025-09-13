@@ -189,6 +189,10 @@
 
   @keyframes blinkTop { 0%, 92%, 100% { transform: translateY(-100%); } 95% { transform: translateY(0%); } }
   @keyframes blinkBottom { 0%, 92%, 100% { transform: translateY(100%); } 95% { transform: translateY(0%); } }
+
+  /* Slow spin utility for iris texture */
+  .animate-spin-slower { animation: spin 18s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 }
 
 @keyframes shine {
