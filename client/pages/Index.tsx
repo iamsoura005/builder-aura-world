@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Eye3D from "@/components/effects/Eye3D";
 
 export default function Index() {
   const snapRef = useRef<HTMLDivElement | null>(null);
@@ -142,16 +143,7 @@ export default function Index() {
               >
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/25 to-emerald-400/20 blur-2xl" />
                 <div className="absolute inset-0 grid place-items-center">
-                  <div className="relative">
-                    <motion.div className="h-72 w-72 sm:h-96 sm:w-96 rounded-full border border-white/10 backdrop-blur-xl bg-white/5 shadow-2xl shadow-cyan-500/20" animate={{ boxShadow: [
-                      "0 0 0 0 rgba(59,130,246,0.15)",
-                      "0 0 80px 0 rgba(59,130,246,0.35)"
-                    ] }} transition={{ duration: 3, repeat: Infinity, repeatType: "mirror" }} />
-                    <motion.div className="absolute inset-8 rounded-full border-2 border-cyan-400/60" animate={{ rotate: 360 }} transition={{ duration: 14, repeat: Infinity, ease: "linear" }} />
-                    <div className="absolute inset-0 grid place-items-center">
-                      <motion.div className="h-20 w-20 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400" animate={{ scale: [1, 1.08, 1] }} transition={{ duration: 2.4, repeat: Infinity }} />
-                    </div>
-                  </div>
+                  <Eye3D className="h-72 w-72 sm:h-96 sm:w-96" />
                 </div>
               </motion.div>
             </div>
