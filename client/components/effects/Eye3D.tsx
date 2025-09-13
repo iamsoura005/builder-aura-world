@@ -7,7 +7,9 @@ export default function Eye3D({ className }: { className?: string }) {
   const pupilRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (prefersReduced) return;
 
     const onMove = (e: MouseEvent) => {
@@ -24,8 +26,10 @@ export default function Eye3D({ className }: { className?: string }) {
       const iy = Math.max(-1, Math.min(1, dy)) * maxIris;
       const px = Math.max(-1, Math.min(1, dx)) * maxPupil;
       const py = Math.max(-1, Math.min(1, dy)) * maxPupil;
-      if (irisRef.current) irisRef.current.style.transform = `translate(${ix}px, ${iy}px)`;
-      if (pupilRef.current) pupilRef.current.style.transform = `translate(${px}px, ${py}px)`;
+      if (irisRef.current)
+        irisRef.current.style.transform = `translate(${ix}px, ${iy}px)`;
+      if (pupilRef.current)
+        pupilRef.current.style.transform = `translate(${px}px, ${py}px)`;
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
@@ -33,7 +37,10 @@ export default function Eye3D({ className }: { className?: string }) {
   }, []);
 
   return (
-    <div ref={containerRef} className={cn("relative rounded-full grid place-items-center", className)}>
+    <div
+      ref={containerRef}
+      className={cn("relative rounded-full grid place-items-center", className)}
+    >
       {/* Sclera */}
       <div className="absolute inset-0 rounded-full border border-white/10 bg-[radial-gradient(circle_at_50%_40%,rgba(255,255,255,0.95),rgba(200,220,230,0.4)_60%,rgba(0,0,0,0.12)_100%)] shadow-2xl shadow-cyan-500/20" />
 
@@ -49,7 +56,13 @@ export default function Eye3D({ className }: { className?: string }) {
         }}
       >
         {/* Iris texture rings */}
-        <div className="absolute inset-0 rounded-full opacity-70 animate-spin-slower" style={{ background: "conic-gradient(from 0deg, rgba(16,185,129,0) 0deg, rgba(16,185,129,0.35) 120deg, rgba(59,130,246,0.3) 240deg, rgba(16,185,129,0) 360deg)" }} />
+        <div
+          className="absolute inset-0 rounded-full opacity-70 animate-spin-slower"
+          style={{
+            background:
+              "conic-gradient(from 0deg, rgba(16,185,129,0) 0deg, rgba(16,185,129,0.35) 120deg, rgba(59,130,246,0.3) 240deg, rgba(16,185,129,0) 360deg)",
+          }}
+        />
       </div>
 
       {/* Pupil */}
